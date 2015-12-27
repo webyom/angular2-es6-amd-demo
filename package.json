@@ -8,7 +8,7 @@
   "dependencies": {
     "@reactivex/rxjs": "^5.0.0-beta.0",
     "angular2": "^2.0.0-beta.0",
-    "angular2-amd-wrapper": "0.0.2",
+    "angular2-amd-wrapper": "^0.0.2",
     "jquery": "^2.1.4",
     "traceur": "^0.0.92",
     "yom-require": "^1.1.2"

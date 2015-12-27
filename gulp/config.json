@@ -1,0 +1,11 @@
+{
+  "development": {
+    "Services": "http://localhost:4080"
+  },
+  "production": {
+    "Services": "http://newapi.ddicar.com:4080"
+  },
+  "staging": {
+    "Services": "http://stg-newapi.ddicar.com:4080"
+  }
+}

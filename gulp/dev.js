@@ -8,6 +8,7 @@ gulp.task('dev', ['watch', 'serve']);
 gulp.task('serve', ['init'], function () {
   gulp.src('dist/browser')
     .pipe(webserver({
-      open: true
+      open: true,
+      port: 4080
     }));
 });
