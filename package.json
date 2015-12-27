@@ -1,0 +1,32 @@
+{
+  "name": "angular2-es6-amd-demo",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "gulp",
+    "start": "gulp dev"
+  },
+  "dependencies": {
+    "@reactivex/rxjs": "^5.0.0-beta.0",
+    "angular2": "^2.0.0-beta.0",
+    "angular2-amd-wrapper": "0.0.2",
+    "jquery": "^2.1.4",
+    "traceur": "^0.0.92",
+    "yom-require": "^1.1.2"
+  },
+  "devDependencies": {
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-amd-bundler": "^0.1.43",
+    "gulp-digest-versioning": "^0.1.6",
+    "gulp-html-optimizer": "^0.1.45",
+    "gulp-less": "^3.0.5",
+    "gulp-mt2amd": "^0.1.26",
+    "gulp-rename": "^1.2.2",
+    "gulp-traceur": "^0.17.1",
+    "gulp-util": "^3.0.7",
+    "gulp-webserver": "^0.9.1",
+    "lazypipe": "^1.0.1",
+    "through2": "^2.0.0",
+    "wrench": "^1.5.8"
+  }
+}
