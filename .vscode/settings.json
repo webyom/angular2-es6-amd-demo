@@ -103,7 +103,7 @@
 	"files.encoding": "utf8",
 
 	// When enabled, will trim trailing whitespace when you save a file.
-	"files.trimTrailingWhitespace": false,
+	"files.trimTrailingWhitespace": true,
 
 
 	//-------- File Explorer configuration --------
