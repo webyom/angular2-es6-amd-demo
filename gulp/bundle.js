@@ -5,13 +5,10 @@ var path = require('path'),
     conf = require('./conf'),
     bundler = require('gulp-amd-bundler'),
     digestVersioning = require('gulp-digest-versioning');
-    
+
 var fixUrl = function (fileName, relPath, basePath) {
   if (!(/^\//).test(fileName)) {
     var filePath = path.resolve(path.dirname(relPath), fileName);
-    if (!(/^\//).test(basePath)) {
-      basePath = path.resolve(process.cwd(), basePath);
-    }
     fileName = '/' + path.relative(basePath, filePath);
   }
   return conf.Services + fileName;
