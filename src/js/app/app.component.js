@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, componentProxyFactory, ROUTER_DIRECTIVES} from 'angular2/router';
+import CrisisComponent from './crisis/crisis.component';
 
 @Component({
   selector: 'main',
@@ -10,7 +11,7 @@ import {RouteConfig, componentProxyFactory, ROUTER_DIRECTIVES} from 'angular2/ro
   {
     path: '/crisis-center',
     name: 'CrisisCenter',
-    component: componentProxyFactory({path: 'app/crisis/main.component'}),
+    component: CrisisComponent,
     useAsDefault: true
   },
   {

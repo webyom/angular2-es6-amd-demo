@@ -6,7 +6,8 @@ var fs = require('fs'),
     gulp = require('gulp'),
     conf = require('./conf'),
     through = require('through2'),
-    bundler = require('gulp-amd-bundler'),
+    amdBundler = require('gulp-amd-bundler'),
+    htmlOptimizer = require('gulp-html-optimizer'),
     propertyMerge = require('gulp-property-merge'),
     digestVersioning = require('gulp-digest-versioning');
 
@@ -34,7 +35,7 @@ gulp.task('bundle', ['bundle-amd', 'gen-md5map', 'bundle-html']);
 // bundle amd modules
 gulp.task('bundle-amd', ['versioning'], function () {
   return gulp.src(AMD_BUNDLE_SRC)
-    .pipe(bundler({
+    .pipe(amdBundler({
       isRelativeDependency: function (dep, isRelative) {
         if ((/\bmain$/).test(dep)) {
           return false;
@@ -61,7 +62,7 @@ gulp.task('gen-md5map', ['bundle-amd'], function () {
     }));
 });
 
-// html
+// bundle html
 gulp.task('bundle-html', ['gen-md5map'], function () {
   return gulp.src([
       'dist/browser/index.html'
@@ -70,6 +71,9 @@ gulp.task('bundle-html', ['gen-md5map'], function () {
       properties: {
         md5map: md5map
       }
+    }))
+    .pipe(htmlOptimizer({
+      requireBaseDir: 'dist/browser/js'
     }))
     .pipe(gulp.dest('dist/browser'));
 });
