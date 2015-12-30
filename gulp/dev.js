@@ -6,9 +6,9 @@ gulp.task('dev', ['watch', 'serve']);
 
 // serve the build dir
 gulp.task('serve', ['init'], function () {
-  gulp.src('dist/browser')
+  return gulp.src('dist/browser')
     .pipe(webserver({
       open: true,
-      port: 4080
+      port: 3000
     }));
 });

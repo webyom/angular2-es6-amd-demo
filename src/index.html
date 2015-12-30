@@ -1,27 +1,35 @@
 <!doctype html>
 <html lang="">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>angular-2-demo</title>
-    <base href="/" />
-  </head>
-  <body>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>angular-2-demo</title>
+<base href="/" />
+</head>
+<body>
+<main>Loading...</main>
 
-    <main>Loading...</main>
+<script>
+var G = {
+  MD5_MAP_SROUCE: '%{{md5map}}%',
+  MD5_MAP: {}
+};
+if (G.MD5_MAP_SROUCE[0] != '%') {
+  G.MD5_MAP = JSON.parse(G.MD5_MAP_SROUCE);
+}
+</script>
 
-    <script src="/js/traceur-runtime.js"></script>
-    <script src="/js/Rx.umd.js"></script>
-    <script src="/js/angular2-polyfills.js"></script>
-    <script src="/js/angular2-all.umd.js"></script>
-    <script src="/js/config/require-config.js"></script>
-    <script src="/js/require.js"></script>
-    <script src="/js/angular2.js"></script>
+<script src="/js/vendor/traceur-runtime.js"></script>
+<script src="/js/vendor/Rx.umd.js"></script>
+<script src="/js/vendor/angular2-polyfills.js"></script>
+<script src="/js/vendor/angular2-all.umd.js"></script>
+<script src="/js/config/require-config.js" id="require-config-script"></script>
+<script src="/js/vendor/require.js"></script>
+<script src="/js/vendor/angular2.js"></script>
 
-    <script>
-      require(['app/main']);
-    </script>
-
-  </body>
+<script>
+require(['app/main']);
+</script>
+</body>
 </html>

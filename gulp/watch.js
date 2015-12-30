@@ -8,7 +8,7 @@ var path = require('path'),
 gulp.task('watch', function () {
   gulp.watch('src/**/*.js', function (evt) {
     var filePath = evt.path;
-    var part = path.dirname(filePath).split('/src/').pop();
+    var part = (path.dirname(filePath) + '/').split('/src/').pop();
     gutil.log('file', filePath, 'changed');
     return gulp.src(filePath)
       .pipe(lazyTasks.lazyTraceurTask())
@@ -16,18 +16,18 @@ gulp.task('watch', function () {
       .pipe(lazyTasks.lazyAmdWrapTask())
       .pipe(gulp.dest('dist/browser/' + part));
   });
-  
+
   gulp.watch('src/**/*.html', function (evt) {
     var filePath = evt.path;
-    var part = path.dirname(filePath).split('/src/').pop();
+    var part = (path.dirname(filePath) + '/').split('/src/').pop();
     gutil.log('file', filePath, 'changed');
     return gulp.src(filePath)
       .pipe(gulp.dest('dist/browser/' + part));
   });
-  
+
   gulp.watch('src/**/*.less', function (evt) {
     var filePath = evt.path;
-    var part = path.dirname(filePath).split('/src/').pop();
+    var part = (path.dirname(filePath) + '/').split('/src/').pop();
     if ((/(^|\-)main.less$/).test(path.basename(filePath))) {
       gutil.log('file', filePath, 'changed');
       return gulp.src(filePath)

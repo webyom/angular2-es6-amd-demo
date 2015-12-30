@@ -11,5 +11,5 @@ gulp.task('dependencies', function () {
     'node_modules/angular2-amd-wrapper/dist/angular2.js',
     'node_modules/jquery/dist/jquery.js'
   ])
-    .pipe(gulp.dest('dist/browser/js'));
+    .pipe(gulp.dest('dist/browser/js/vendor'));
 });

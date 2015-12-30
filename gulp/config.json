@@ -1,11 +1,14 @@
 {
   "development": {
+    "cdn": "http://localhost:3000",
     "Services": "http://localhost:4080"
   },
   "production": {
+    "cdn": "http://cdn.ddicar.com",
     "Services": "http://newapi.ddicar.com:4080"
   },
   "staging": {
+    "cdn": "http://cdn.ddicar.com",
     "Services": "http://stg-newapi.ddicar.com:4080"
   }
 }
