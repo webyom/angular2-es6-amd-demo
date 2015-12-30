@@ -92,6 +92,7 @@ gulp.task('bundle-html', ['gen-md5map'], function () {
     .pipe(htmlOptimizer({
       requireBaseDir: 'dist/browser/js'
     }))
+    .pipe(gulp.dest('dist/node'))
     .pipe(gulp.dest('dist/browser'));
 });
 

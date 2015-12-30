@@ -17,6 +17,7 @@ gulp.task('js', function () {
 // move html
 gulp.task('html', function () {
   return gulp.src('src/**/*.html')
+    .pipe(gulp.dest('dist/node'))
     .pipe(gulp.dest('dist/browser'));
 });
 
@@ -24,6 +25,7 @@ gulp.task('html', function () {
 gulp.task('less', function () {
   return gulp.src(['src/**/*-main.less', 'src/**/main.less'])
     .pipe(less())
+    .pipe(gulp.dest('dist/node'))
     .pipe(gulp.dest('dist/browser'));
 });
 
