@@ -6,6 +6,7 @@ var fs = require('fs'),
     gulp = require('gulp'),
     conf = require('./conf'),
     through = require('through2'),
+    minify = require('gulp-minifier'),
     amdBundler = require('gulp-amd-bundler'),
     htmlOptimizer = require('gulp-html-optimizer'),
     propertyMerge = require('gulp-property-merge'),
@@ -30,7 +31,23 @@ var fixUrl = function (fileName, relPath, basePath) {
 };
 
 // bundle
-gulp.task('bundle', ['bundle-amd', 'gen-md5map', 'bundle-html']);
+gulp.task('bundle', ['bundle-amd', 'gen-md5map', 'bundle-html', 'minify']);
+
+// minify js, css, html
+gulp.task('minify', ['bundle-amd', 'gen-md5map', 'bundle-html'], function () {
+  return gulp.src([
+      'dist/browser/**/*.+(js|css)',
+      'dist/browser/*.html'
+  ])
+    .pipe(minify({
+      minify: true,
+      collapseWhitespace: true,
+      conservativeCollapse: true,
+      minifyJS: true,
+      minifyCSS: true
+    }))
+    .pipe(gulp.dest('dist/browser'));
+});
 
 // bundle amd modules
 gulp.task('bundle-amd', ['versioning'], function () {
@@ -80,7 +97,10 @@ gulp.task('bundle-html', ['gen-md5map'], function () {
 
 // digest versioning
 gulp.task('versioning', ['init'], function () {
-  return gulp.src(['dist/browser/**/*.css', 'dist/browser/**/*.html'])
+  return gulp.src([
+    'dist/browser/**/*.css',
+    'dist/browser/**/*.html'
+  ])
     .pipe(digestVersioning({
       digestLength: VERSION_DIGEST_LEN,
       basePath: 'dist/browser',

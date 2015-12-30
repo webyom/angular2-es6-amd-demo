@@ -20,6 +20,7 @@
     "gulp-digest-versioning": "^0.1.7",
     "gulp-html-optimizer": "^0.1.49",
     "gulp-less": "^3.0.5",
+    "gulp-minifier": "^0.1.1",
     "gulp-mt2amd": "^0.1.26",
     "gulp-property-merge": "^0.1.0",
     "gulp-traceur": "^0.17.1",
