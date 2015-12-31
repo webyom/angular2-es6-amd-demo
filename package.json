@@ -16,9 +16,9 @@
   "devDependencies": {
     "del": "^2.2.0",
     "gulp": "^3.9.0",
-    "gulp-amd-bundler": "^0.1.45",
+    "gulp-amd-bundler": "^0.1.46",
     "gulp-digest-versioning": "^0.1.7",
-    "gulp-html-optimizer": "^0.1.49",
+    "gulp-html-optimizer": "^0.1.50",
     "gulp-less": "^3.0.5",
     "gulp-minifier": "^0.1.1",
     "gulp-mt2amd": "^0.1.26",

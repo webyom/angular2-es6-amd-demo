@@ -9,4 +9,4 @@ if (!config[env]) {
 }
 
 module.exports = config[env];
-module.exports.evn = env;
+module.exports.env = env;

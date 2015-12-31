@@ -1,9 +1,10 @@
 var gulp = require('gulp'),
     less = require('gulp-less'),
+    mt2amd = require('gulp-mt2amd'),
     lazyTasks = require('./lazy-tasks');
 
 // run init tasks
-gulp.task('init', ['dependencies', 'js', 'html', 'less', 'img']);
+gulp.task('init', ['dependencies', 'js', 'html', 'less', 'less-to-amd', 'img']);
 
 // transpile & move js
 gulp.task('js', function () {
@@ -22,9 +23,17 @@ gulp.task('html', function () {
 
 // compile less
 gulp.task('less', function () {
-  return gulp.src(['src/**/*-main.less', 'src/**/main.less'])
+  return gulp.src(['src/css/**/*-main.less', 'src/css/**/main.less'])
     .pipe(less())
-    .pipe(gulp.dest('dist/browser'));
+    .pipe(gulp.dest('dist/browser/css'));
+});
+
+// compile less to amd module
+gulp.task('less-to-amd', function () {
+  return gulp.src(['src/js/app/**/*-main.less', 'src/js/app/**/main.less'])
+    .pipe(mt2amd({
+    }))
+    .pipe(gulp.dest('dist/browser/js/app'));
 });
 
 // move img

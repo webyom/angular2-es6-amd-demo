@@ -22,6 +22,13 @@ var AMD_BUNDLE_SRC = [
 
 var md5map = {};
 
+var isRelativeDependency = function (dep, isRelative) {
+  if ((/\bmain(\.component$)/).test(dep)) {
+    return false;
+  } else {
+    return isRelative;
+  }
+};
 var fixUrl = function (fileName, relPath, basePath) {
   if (!(/^\//).test(fileName)) {
     var filePath = path.resolve(path.dirname(relPath), fileName);
@@ -40,7 +47,7 @@ gulp.task('minify', ['bundle-amd', 'gen-md5map', 'bundle-html'], function () {
       'dist/browser/*.html'
   ])
     .pipe(minify({
-      minify: true,
+      minify: conf.env == 'production',
       collapseWhitespace: true,
       conservativeCollapse: true,
       minifyJS: true,
@@ -53,13 +60,7 @@ gulp.task('minify', ['bundle-amd', 'gen-md5map', 'bundle-html'], function () {
 gulp.task('bundle-amd', ['versioning'], function () {
   return gulp.src(AMD_BUNDLE_SRC)
     .pipe(amdBundler({
-      isRelativeDependency: function (dep, isRelative) {
-        if ((/\bmain$/).test(dep)) {
-          return false;
-        } else {
-          return isRelative;
-        }
-      }
+      isRelativeDependency: isRelativeDependency
     }))
     .pipe(gulp.dest('dist/browser/js/app'));
 });
@@ -90,7 +91,8 @@ gulp.task('bundle-html', ['gen-md5map'], function () {
       }
     }))
     .pipe(htmlOptimizer({
-      requireBaseDir: 'dist/browser/js'
+      requireBaseDir: 'dist/browser/js',
+      isRelativeDependency: isRelativeDependency
     }))
     .pipe(gulp.dest('dist/node'))
     .pipe(gulp.dest('dist/browser'));
