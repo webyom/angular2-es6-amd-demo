@@ -24,10 +24,12 @@
     "gulp-mt2amd": "^0.1.26",
     "gulp-property-merge": "^0.1.0",
     "gulp-traceur": "^0.17.1",
+    "gulp-tsc": "^1.1.4",
     "gulp-util": "^3.0.7",
     "gulp-webserver": "^0.9.1",
     "lazypipe": "^1.0.1",
     "through2": "^2.0.0",
+    "typescript": "^1.7.5",
     "wrench": "^1.5.8"
   }
 }

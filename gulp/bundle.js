@@ -23,7 +23,7 @@ var AMD_BUNDLE_SRC = [
 var md5map = {};
 
 var isRelativeDependency = function (dep, isRelative) {
-  if ((/\bmain(\.component$)/).test(dep)) {
+  if ((/^\.\.|\bmain(\.component)?$/).test(dep)) {
     return false;
   } else {
     return isRelative;
@@ -102,7 +102,8 @@ gulp.task('bundle-html', ['gen-md5map'], function () {
 gulp.task('versioning', ['init'], function () {
   return gulp.src([
     'dist/browser/**/*.css',
-    'dist/browser/**/*.html'
+    'dist/browser/**/*.html',
+    'dist/browser/**/*.less.js'
   ])
     .pipe(digestVersioning({
       digestLength: VERSION_DIGEST_LEN,

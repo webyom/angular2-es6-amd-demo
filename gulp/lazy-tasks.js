@@ -1,26 +1,25 @@
 /* global Buffer */
 
 var lazypipe = require('lazypipe'),
-    rename = require('gulp-rename'),
-    traceur = require('gulp-traceur'),
+    typescript = require('gulp-tsc'),
     through = require('through2');
 
 var EOL = '\n';
 
 // lazy tasks
-exports.lazyTraceurTask = lazypipe()
-    .pipe(traceur, {
-      modules: 'commonjs',
-      annotations: true,
-      types: true,
-      memberVariables: true
-    });
+exports.lazyTscTask = lazypipe()
+    .pipe(typescript, {
+      module: 'commonjs',
+      target: 'ES5',
+      experimentalDecorators: true,
+      emitDecoratorMetadata: true
+    })
 
 exports.lazyAmdWrapTask = lazypipe()
     .pipe(function () {
       return through.obj(function (file, enc, callback) {
         var contents = file.contents.toString();
-        if ((/\bmodule.exports\b/).test(contents)) {
+        if ((/\bexports\b/).test(contents)) {
           file.contents = new Buffer([
             'define(function(require, exports, module) {',
             file.contents.toString(),

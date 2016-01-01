@@ -4,15 +4,22 @@ var gulp = require('gulp'),
     lazyTasks = require('./lazy-tasks');
 
 // run init tasks
-gulp.task('init', ['dependencies', 'js', 'html', 'less', 'less-to-amd', 'img']);
+gulp.task('init', ['dependencies', 'tsc', 'js', 'html', 'less', 'less-to-amd', 'img']);
 
-// transpile & move js
-gulp.task('js', function () {
-  return gulp.src('src/**/*.js')
-    .pipe(lazyTasks.lazyTraceurTask())
-    .pipe(gulp.dest('dist/node'))
+// transpile ts
+gulp.task('tsc', function () {
+  return gulp.src('src/js/app/**/*.ts')
+    .pipe(lazyTasks.lazyTscTask())
+    .pipe(gulp.dest('dist/node/js/app'))
     .pipe(lazyTasks.lazyAmdWrapTask())
-    .pipe(gulp.dest('dist/browser'));
+    .pipe(gulp.dest('dist/browser/js/app'));
+});
+
+// move js
+gulp.task('js', function () {
+  return gulp.src('src/js/config/**/*.js')
+    .pipe(gulp.dest('dist/node/js/config'))
+    .pipe(gulp.dest('dist/browser/js/config'));
 });
 
 // move html
@@ -31,8 +38,7 @@ gulp.task('less', function () {
 // compile less to amd module
 gulp.task('less-to-amd', function () {
   return gulp.src(['src/js/app/**/*-main.less', 'src/js/app/**/main.less'])
-    .pipe(mt2amd({
-    }))
+    .pipe(mt2amd())
     .pipe(gulp.dest('dist/browser/js/app'));
 });
 

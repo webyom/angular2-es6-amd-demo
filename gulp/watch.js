@@ -7,15 +7,15 @@ var path = require('path'),
 
 // watch for changes and run the relevant task
 gulp.task('watch', function () {
-  gulp.watch('src/**/*.js', function (evt) {
+  gulp.watch('src/js/app/**/*.ts', function (evt) {
     var filePath = evt.path;
-    var part = (path.dirname(filePath) + '/').split('/src/').pop();
+    var part = (path.dirname(filePath) + '/').split('/src/js/app/').pop();
     gutil.log('file', filePath, 'changed');
     return gulp.src(filePath)
-      .pipe(lazyTasks.lazyTraceurTask())
-      .pipe(gulp.dest('dist/node/' + part))
+      .pipe(lazyTasks.lazyTscTask())
+      .pipe(gulp.dest('dist/node/js/app/' + part))
       .pipe(lazyTasks.lazyAmdWrapTask())
-      .pipe(gulp.dest('dist/browser/' + part));
+      .pipe(gulp.dest('dist/browser/js/app/' + part));
   });
 
   gulp.watch('src/**/*.html', function (evt) {

@@ -1,24 +1,35 @@
-import {Component} from 'angular2/core';
-import {RouteConfig, componentProxyFactory, ROUTER_DIRECTIVES} from 'angular2/router';
-import CrisisComponent from './crisis/crisis.component';
-
-@Component({
-  selector: 'main',
-  templateUrl: 'js/app/app.html',
-  directives: [ROUTER_DIRECTIVES]
-})
-@RouteConfig([
-  {
-    path: '/crisis-center',
-    name: 'CrisisCenter',
-    component: CrisisComponent,
-    useAsDefault: true
-  },
-  {
-    path: '/heroes',
-    name: 'Heroes',
-    component: componentProxyFactory({path: 'app/hero/main.component'})
-  }
-])
-export default class AppComponent {
-}
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('angular2/core');
+var router_1 = require('angular2/router');
+var crisis_component_1 = require('./crisis/crisis.component');
+var AppComponent = (function () {
+    function AppComponent() {
+    }
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'main',
+            templateUrl: 'js/app/app.html',
+            directives: [router_1.ROUTER_DIRECTIVES]
+        }),
+        router_1.RouteConfig([
+            {
+                path: '/crisis-center',
+                name: 'CrisisCenter',
+                component: crisis_component_1.default,
+                useAsDefault: true
+            }
+        ]), 
+        __metadata('design:paramtypes', [])
+    ], AppComponent);
+    return AppComponent;
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = AppComponent;

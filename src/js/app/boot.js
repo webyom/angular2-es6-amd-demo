@@ -1,7 +1,6 @@
-import {bootstrap} from 'angular2/platform/browser';
-import {ROUTER_PROVIDERS} from 'angular2/router';
-import AppComponent from './app.component';
-
-export default {};
-
-bootstrap(AppComponent, [ROUTER_PROVIDERS]);
+var browser_1 = require('angular2/platform/browser');
+var router_1 = require('angular2/router');
+var app_component_1 = require('./app.component');
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = {};
+browser_1.bootstrap(app_component_1.default, [router_1.ROUTER_PROVIDERS]);
