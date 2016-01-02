@@ -18,6 +18,14 @@ gulp.task('watch', function () {
       .pipe(gulp.dest('dist/browser/js/app/' + part));
   });
 
+  gulp.watch('src/js/config/**/*.js', function (evt) {
+    var filePath = evt.path;
+    var part = (path.dirname(filePath) + '/').split('/src/js/config/').pop();
+    gutil.log('file', filePath, 'changed');
+    return gulp.src(filePath)
+      .pipe(gulp.dest('dist/browser/js/config/' + part));
+  });
+
   gulp.watch('src/**/*.html', function (evt) {
     var filePath = evt.path;
     var part = (path.dirname(filePath) + '/').split('/src/').pop();
@@ -45,8 +53,7 @@ gulp.task('watch', function () {
     if ((/(^|\-)main.less$/).test(path.basename(filePath))) {
       gutil.log('file', filePath, 'changed');
       return gulp.src(filePath)
-        .pipe(mt2amd({
-        }))
+        .pipe(mt2amd())
         .pipe(gulp.dest('dist/browser/js/app/' + part));
     } else {
       return gulp.start('less-to-amd');

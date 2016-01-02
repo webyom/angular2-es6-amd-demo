@@ -10,6 +10,7 @@ var fs = require('fs'),
     amdBundler = require('gulp-amd-bundler'),
     htmlOptimizer = require('gulp-html-optimizer'),
     propertyMerge = require('gulp-property-merge'),
+    inlineNg2Template = require('gulp-inline-ng2-template'),
     digestVersioning = require('gulp-digest-versioning');
 
 var VERSION_DIGEST_LEN = 8;
@@ -38,10 +39,10 @@ var fixUrl = function (fileName, relPath, basePath) {
 };
 
 // bundle
-gulp.task('bundle', ['bundle-amd', 'gen-md5map', 'bundle-html', 'minify']);
+gulp.task('bundle', ['inline-template', 'bundle-amd', 'gen-md5map', 'bundle-html', 'minify']);
 
 // minify js, css, html
-gulp.task('minify', ['bundle-amd', 'gen-md5map', 'bundle-html'], function () {
+gulp.task('minify', ['inline-template', 'bundle-amd', 'gen-md5map', 'bundle-html'], function () {
   return gulp.src([
       'dist/browser/**/*.+(js|css)',
       'dist/browser/*.html'
@@ -57,7 +58,7 @@ gulp.task('minify', ['bundle-amd', 'gen-md5map', 'bundle-html'], function () {
 });
 
 // bundle amd modules
-gulp.task('bundle-amd', ['versioning'], function () {
+gulp.task('bundle-amd', ['versioning', 'inline-template'], function () {
   return gulp.src(AMD_BUNDLE_SRC)
     .pipe(amdBundler({
       isRelativeDependency: isRelativeDependency
@@ -81,7 +82,7 @@ gulp.task('gen-md5map', ['bundle-amd'], function () {
 });
 
 // bundle html
-gulp.task('bundle-html', ['gen-md5map'], function () {
+gulp.task('bundle-html', ['gen-md5map', 'inline-template'], function () {
   return gulp.src([
       'dist/browser/index.html'
   ])
@@ -96,6 +97,20 @@ gulp.task('bundle-html', ['gen-md5map'], function () {
     }))
     .pipe(gulp.dest('dist/node'))
     .pipe(gulp.dest('dist/browser'));
+});
+
+// inline template
+gulp.task('inline-template', ['init', 'versioning'], function () {
+  return gulp.src([
+    'dist/browser/js/app/**/*.js'
+  ])
+    .pipe(inlineNg2Template({
+      base: '/dist/browser',
+      html: true,
+      css: true,
+      target: 'es5'
+    }))
+    .pipe(gulp.dest('dist/browser/js/app'));
 });
 
 // digest versioning

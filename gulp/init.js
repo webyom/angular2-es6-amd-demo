@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     lazyTasks = require('./lazy-tasks');
 
 // run init tasks
-gulp.task('init', ['dependencies', 'tsc', 'js', 'html', 'less', 'less-to-amd', 'img']);
+gulp.task('init', ['dependencies', 'tsc', 'js', 'html', 'less', 'img']);
 
 // transpile ts
 gulp.task('tsc', function () {
@@ -30,9 +30,9 @@ gulp.task('html', function () {
 
 // compile less
 gulp.task('less', function () {
-  return gulp.src(['src/css/**/*-main.less', 'src/css/**/main.less'])
+  return gulp.src(['src/**/*-main.less', 'src/**/main.less'])
     .pipe(less())
-    .pipe(gulp.dest('dist/browser/css'));
+    .pipe(gulp.dest('dist/browser'));
 });
 
 // compile less to amd module

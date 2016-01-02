@@ -1,10 +1,8 @@
 import {Component} from 'angular2/core';
-import StyleComponent from '../style.component';
 
 @Component({
   templateUrl: 'js/app/hero/main.html',
-  directives: [StyleComponent]
+  styleUrls: ['js/app/hero/main.css']
 })
 export default class HeroListComponent {
-  styleText = require('./main.less').render();
 }
