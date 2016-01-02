@@ -108,7 +108,8 @@ gulp.task('inline-template', ['init', 'versioning'], function () {
       base: '/dist/browser',
       html: true,
       css: true,
-      target: 'es5'
+      target: 'es5',
+      indent: 0
     }))
     .pipe(gulp.dest('dist/browser/js/app'));
 });

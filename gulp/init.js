@@ -35,13 +35,6 @@ gulp.task('less', function () {
     .pipe(gulp.dest('dist/browser'));
 });
 
-// compile less to amd module
-gulp.task('less-to-amd', function () {
-  return gulp.src(['src/js/app/**/*-main.less', 'src/js/app/**/main.less'])
-    .pipe(mt2amd())
-    .pipe(gulp.dest('dist/browser/js/app'));
-});
-
 // move img
 gulp.task('img', function () {
   return gulp.src('src/**/*.+(jpg|jpeg|gif|png|otf|eot|svg|ttf|woff|woff2|ico|mp3|swf)')
