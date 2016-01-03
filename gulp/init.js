@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
     less = require('gulp-less'),
-    mt2amd = require('gulp-mt2amd'),
     lazyTasks = require('./lazy-tasks');
 
 // run init tasks

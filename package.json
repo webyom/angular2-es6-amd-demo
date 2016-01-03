@@ -21,7 +21,6 @@
     "gulp-inline-ng2-template": "0.0.9",
     "gulp-less": "^3.0.5",
     "gulp-minifier": "^0.1.1",
-    "gulp-mt2amd": "^0.1.26",
     "gulp-property-merge": "^0.1.0",
     "gulp-traceur": "^0.17.1",
     "gulp-tsc": "^1.1.4",
