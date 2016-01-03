@@ -100,7 +100,7 @@ gulp.task('bundle-html', ['gen-md5map', 'inline-template'], function () {
 });
 
 // inline template
-gulp.task('inline-template', ['init', 'versioning'], function () {
+gulp.task('inline-template', ['init', 'versioning', 'minify-inline--template', 'minify-inline-css'], function () {
   return gulp.src([
     'dist/browser/js/app/**/*.js'
   ])
@@ -110,6 +110,35 @@ gulp.task('inline-template', ['init', 'versioning'], function () {
       css: true,
       target: 'es5',
       indent: 0
+    }))
+    .pipe(gulp.dest('dist/browser/js/app'));
+});
+
+// minify inline template
+gulp.task('minify-inline--template', ['init', 'versioning'], function () {
+  return gulp.src([
+      'dist/browser/js/app/**/*.html'
+  ])
+    .pipe(through.obj(function (file, enc, next) {
+      if (conf.env == 'production') {
+        contents = file.contents.toString();
+        contents = contents.replace(/\s*(\r\n|\n|\r)\s*/mg, ' ');
+        file.contents = new Buffer(contents);
+      }
+      this.push(file);
+      next();
+    }))
+    .pipe(gulp.dest('dist/browser/js/app'));
+});
+
+// minify inline css
+gulp.task('minify-inline-css', ['init', 'versioning'], function () {
+  return gulp.src([
+      'dist/browser/js/app/**/*.css'
+  ])
+    .pipe(minify({
+      minify: conf.env == 'production',
+      minifyCSS: true
     }))
     .pipe(gulp.dest('dist/browser/js/app'));
 });
