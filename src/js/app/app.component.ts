@@ -5,7 +5,7 @@ import componentProxyFactory from './component-proxy-factory';
 
 @Component({
   selector: 'main',
-  templateUrl: '/js/app/app.html',
+  templateUrl: 'js/app/app.html',
   directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([

@@ -128,6 +128,7 @@ gulp.task('minify-inline--template', ['init', 'versioning'], function () {
       this.push(file);
       next();
     }))
+    .pipe(gulp.dest('dist/node/js/app'))
     .pipe(gulp.dest('dist/browser/js/app'));
 });
 
@@ -140,6 +141,7 @@ gulp.task('minify-inline-css', ['init', 'versioning'], function () {
       minify: conf.env == 'production',
       minifyCSS: true
     }))
+    .pipe(gulp.dest('dist/node/js/app'))
     .pipe(gulp.dest('dist/browser/js/app'));
 });
 
@@ -147,13 +149,13 @@ gulp.task('minify-inline-css', ['init', 'versioning'], function () {
 gulp.task('versioning', ['init'], function () {
   return gulp.src([
     'dist/browser/**/*.css',
-    'dist/browser/**/*.html',
-    'dist/browser/**/*.less.js'
+    'dist/browser/**/*.html'
   ])
     .pipe(digestVersioning({
       digestLength: VERSION_DIGEST_LEN,
       basePath: 'dist/browser',
       fixUrl: fixUrl
     }))
+    .pipe(gulp.dest('dist/node'))
     .pipe(gulp.dest('dist/browser'));
 });
